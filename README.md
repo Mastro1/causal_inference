@@ -8,9 +8,7 @@ For the first exercise, we coded the three functions **SGS**, **PC1**, and **PC2
 
 Next, we integrated into our code an algorithm allowing us to partially orient a graph starting from the two main outputs of Task 1: the unoriented graphs, and the separating sets for all non-adjacent variables. The algorithm first exploits the graph’s v-structures and then applies the first two Meek’s rules in a loop.
 
-Finally, we plotted the oriented graphs. The results of D1, D2, and D3 are visible in the Figure below, which shows nine Bayesian graphs oriented according to SGS, PC1, and PC2 algorithms. For computational reasons, we couldn’t display the graph nor the adjacency matrix for the dataset D4.
-
-<p align="center"><img src="https://drive.google.com/uc?id=1hTX5M_EGTbxfveq7neeWcjk7Nz9ZzPO-" width="900"/></p>
+Finally, we plotted the oriented graphs. The results of D1, D2, and D3 are visible in the [report](https://github.com/Mastro1/causal_inference/blob/main/Report_Final_Project_CI.pdf), which shows nine Bayesian graphs oriented according to SGS, PC1, and PC2 algorithms. For computational reasons, we couldn’t display the graph nor the adjacency matrix for the dataset D4.
 
 Although statistically consistent, the SGS algorithm is computationally inefficient. 
 
@@ -22,9 +20,9 @@ In practice, implementing the three algorithms with the three datasets, we had t
 
 |                | D1 | D2  | D3   |
 |----------------|----|-----|------|
-| SGS - CI tests | 46 | 538 | 7351 |
+| SGS - CI tests | 51 | 607 | 7501 |
 | PC1 - CI tests | 51 | 551 | 5681 |
-| PC2 - CI tests | 42 | 472 | 5398 |
+| PC2 - CI tests | 42 | 483 | 5380 |
 
 
 ## Exercise 2 - Analysing the stock market data
@@ -52,19 +50,7 @@ The algorithm led us to the causal structure reported in Figure below.
 
 <p align="center"><img src="https://drive.google.com/uc?id=1Mye6MX56y7EGhhbGcLhbMtI0-lpiq9EL" width="300"/></p>
 
-
-As a final step, we implemented the same algorithm to learn a causal structure that is less demanding in terms of DI threshold and therefore allows us to infer more DIs. Even though the new DIs may be considered less robust because of the threshold reduction, they could provide valuable and reliable information if the threshold is rigorously diminished.
-Our algorithm set a new threshold obtained by convergence. We start with an arbitrary maximum and minimum threshold of 0.75 and 0.25 respectively, we average these two extremes and set an average threshold accordingly (0.5 in the first case).
-
-We then verify if using this average threshold, the DIs found are such that we can connect all of the 12 nodes to at least one other. If that is the case, the minimum threshold is replaced by the average of the previous threshold’s extremes (0.75 and 0.25, in the first case). If this is not the case, the maximum threshold is replaced by the average of the previous threshold’s extremes (0.75 and 0.25, in the first case).
-We then iterate this process 100 times. After roughly 50 iterations, the algorithm already finds a stable DI-threshold value. And after all the 100 iterations, the final threshold is set to 0.38153419677443867, and it allows to link all the nodes at least into couples.
-Hence, we conserve the highest threshold allowing at least pairwise edges for all the nodes.
-
-Implementing the new threshold within the algorithm yields the causal structure reported in Figure below.
-
 Ultimately, one should note that bi-directional arrows are NOT an indication of node directions: in our code, they are used to plot un-directed edges.
-
-<p align="center"><img src="https://drive.google.com/uc?id=1OLsLAwAHHg-jzVAE-hlsDQ4jdEQ9offY" width="300"/></p>
 
 
 ## References
